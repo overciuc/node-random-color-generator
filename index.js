@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 const luminosity = process.argv[3];
 const hue = process.argv[2];
 
@@ -9,7 +10,7 @@ const color = randomColor({
     hue: hue,
 });
 
-const readline = require('readline');
+const readline = require('node:readline');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -29,13 +30,13 @@ function colorShow(color) {
 }
 
 if (process.argv[2] === 'ask') {
-    rl.question('What color would you like to see? ', function(hue) {
+    rl.question('What color would you like to see? ', function(askedHue) {
         rl.question(
             'What luminosity would you like to see? ',
-            function(luminosity) {
+            function(askedLuminosity) {
                 const askedColor = randomColor({
-                    luminosity: luminosity,
-                    hue: hue,
+                    luminosity: askedLuminosity,
+                    hue: askedHue,
                 });
                 colorShow(askedColor);
                 rl.close();
