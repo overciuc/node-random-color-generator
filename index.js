@@ -9,22 +9,40 @@ const color = randomColor({
     hue: hue,
 });
 
-function colorShow(str) {
-    console.log(chalk.hex(color).bold(str));
+const readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+
+function colorShow(color) {
+    const hashTagsGrid = `    ##############################
+    ##############################
+    ##############################
+    ########              ########
+    ########   ${color}    ########
+    ########              ########
+    ##############################
+    ##############################
+    ##############################`;
+    console.log(chalk.hex(color).bold(hashTagsGrid));
 }
+
 if (process.argv[2] === 'ask') {
-    console.log('What color would you like to see?');
-    console.log('What luminosity would you like to see?');
+    rl.question('What color would you like to see ? ', function(hue) {
+        rl.question(
+            'What luminosity would you like to see ? ',
+            function(luminosity) {
+                const askedColor = randomColor({
+                    luminosity: luminosity,
+                    hue: hue,
+                });
+                colorShow(askedColor);
+                rl.close();
+            },
+        );
+    });
 } else {
-    colorShow(
-        `##############################
-##############################
-##############################
-########              ########
-########   ${color}    ########
-########              ########
-##############################
-##############################
-##############################`,
-    );
+    colorShow(color);
+    rl.close();
 }
