@@ -31,9 +31,9 @@ function colorShow(color) {
 }
 
 if (process.argv[2] === 'ask') {
-    rl.question('What color would you like to see? ', function(askedHue) {
+    rl.question('What color would you like to see?', function(askedHue) {
         rl.question(
-            'What luminosity would you like to see? ',
+            'What luminosity would you like to see?',
             function(askedLuminosity) {
                 const askedColor = randomColor({
                     luminosity: askedLuminosity,
