@@ -14,7 +14,7 @@ let dimensions;
 let hue;
 let luminosity;
 
-// check if there was an ask or dimensions given or other cases
+// check if there was an ask or dimensions given or other cases ba;jasjjdjdkasd
 let ask = false;
 
 if (argv2 === 'ask') {
