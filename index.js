@@ -50,7 +50,7 @@ function colorShow(p_color, p_width, p_height) {
     for (let i = 0; i < topBunHeight; i++) {
         console.log(chalk.hex(p_color).bold(bunLine));
     }
-    // patty
+    // patty to be put in the middle with the same empty box arounf the color name
     const pattyEmptyLine =
         '#'.repeat(Math.floor((p_width - 14) / 2)) +
         ' '.repeat(14) +
