@@ -5,7 +5,7 @@ const randomColor = require('randomcolor');
 const readline = require('readline');
 
 // make sure the argv2 is not undefined
-let argv2 = '';
+let argv2;
 if (process.argv[2]) {
   argv2 = process.argv[2];
 }
@@ -14,17 +14,17 @@ let dimensions;
 let hue;
 let luminosity;
 
-// check if there was an ask or dimensions given or other cases ba;jasjjdjdkasd
+// check if there was an ask or dimensions given or other cases
 let ask = false;
 
 if (argv2 === 'ask') {
   ask = true;
 } else {
-  if (argv2.includes('x')) {
+  if (argv2 && argv2.includes('x')) {
     dimensions = process.argv[2];
     hue = process.argv[3];
     luminosity = process.argv[4];
-  } else if (argv2 !== '') {
+  } else if (argv2) {
     hue = argv2;
     luminosity = process.argv[3];
   }
@@ -42,35 +42,40 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// displays the hash tag grid with an empty square in the middle with a display of color code.
-function colorShow(p_color, p_width, p_height) {
-  const bunLine = '#'.repeat(p_width);
-  const topBunHeight = Math.floor((p_height - 3) / 2);
-  // top bun
-  for (let i = 0; i < topBunHeight; i++) {
-    console.log(chalk.hex(p_color).bold(bunLine));
+function printBun(bunHeight, bunColor, bunLine) {
+  for (let i = 0; i < bunHeight; i++) {
+    console.log(chalk.hex(bunColor).bold(bunLine));
   }
-  // patty to be put in the middle with the same empty box arounf the color name
+}
+
+// displays the hash tag grid with an empty square in the middle with a display of color code.
+function colorShow(printColor, printWidth, printHeight) {
+  const bunLine = '#'.repeat(printWidth);
+  const bunHeightDecimal = (printHeight - 3) / 2;
+  const topBunHeight = Math.floor(bunHeightDecimal);
+  const bottomBunHeight = Math.ceil(bunHeightDecimal);
+  // top bun
+  printBun(topBunHeight, printColor, bunLine);
+
+  // patty to be put in the middle with the same empty box around the color name
   const pattyEmptyLine =
-    '#'.repeat(Math.floor((p_width - 14) / 2)) +
+    '#'.repeat(Math.floor((printWidth - 14) / 2)) +
     ' '.repeat(14) +
-    '#'.repeat(Math.ceil((p_width - 14) / 2));
-  console.log(chalk.hex(p_color).bold(pattyEmptyLine));
+    '#'.repeat(Math.ceil((printWidth - 14) / 2));
+  console.log(chalk.hex(printColor).bold(pattyEmptyLine));
 
   const pattyColorLine =
-    '#'.repeat(Math.floor((p_width - 14) / 2)) +
+    '#'.repeat(Math.floor((printWidth - 14) / 2)) +
     ' '.repeat(3) +
-    p_color +
+    printColor +
     ' '.repeat(4) +
-    '#'.repeat(Math.ceil((p_width - 14) / 2));
-  console.log(chalk.hex(p_color).bold(pattyColorLine));
+    '#'.repeat(Math.ceil((printWidth - 14) / 2));
+  console.log(chalk.hex(printColor).bold(pattyColorLine));
 
-  console.log(chalk.hex(p_color).bold(pattyEmptyLine));
+  console.log(chalk.hex(printColor).bold(pattyEmptyLine));
+
   // bottom bun
-  const bottomBunHeight = Math.ceil((p_height - 3) / 2);
-  for (let i = 0; i < bottomBunHeight; i++) {
-    console.log(chalk.hex(p_color).bold(bunLine));
-  }
+  printBun(bottomBunHeight, printColor, bunLine);
 }
 
 // default declaration of width and heaight of the grid.
