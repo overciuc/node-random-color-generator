@@ -2,6 +2,9 @@
   "name": "node-random-color-generator",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "yarn babel-node --plugins @upleveled/remove-node-prefix index.js"
+  },
   "repository": "https://github.com/overciuc/node-random-color-generator.git",
   "author": "Olga Verciuc <o.verciuc@gmail.com>",
   "license": "MIT",
@@ -10,6 +13,8 @@
     "randomcolor": "^0.6.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
     "@types/chalk": "^2.2.0",
     "@types/colors": "^1.2.1",
     "@types/node": "14.14.37",
@@ -18,6 +23,7 @@
     "@types/react-dom": "17.0.3",
     "@typescript-eslint/eslint-plugin": "4.21.0",
     "@typescript-eslint/parser": "4.21.0",
+    "@upleveled/babel-plugin-remove-node-prefix": "^1.0.4",
     "@upleveled/eslint-config-upleveled": "1.12.0",
     "babel-eslint": "10.1.0",
     "eslint": "7.23.0",

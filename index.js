@@ -2,7 +2,7 @@
 const chalk = require('chalk');
 const randomColor = require('randomcolor');
 // eslint-disable-next-line unicorn/prefer-node-protocol
-const readline = require('readline');
+const readline = require('node:readline');
 
 // make sure the argv2 is not undefined
 let argv2;
@@ -112,6 +112,3 @@ if (ask) {
   colorShow(color, width, height);
   rl.close();
 }
-
-/* eslint-disable unicorn/prefer-node-protocol*/
-/* eslint-disable no-shadow */
